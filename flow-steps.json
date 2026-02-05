@@ -1,0 +1,200 @@
+{
+  "flowName": "ansDinAiStackInADayUserProvisioning",
+  "steps": [
+    {
+      "id": "whenNewResponseSubmitted",
+      "name": "When a new response is submitted",
+      "type": "trigger",
+      "definition": {
+        "type": "OpenApiConnectionWebhook",
+        "inputs": {
+          "parameters": {
+            "form_id": "<redacted>"
+          },
+          "host": {
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+            "connection": "shared_microsoftforms-1",
+            "operationId": "CreateFormWebhook"
+          }
+        },
+        "splitOn": "@triggerOutputs()?['body/value']",
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "getResponseDetails",
+      "name": "Get response details",
+      "type": "action",
+      "definition": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "parameters": {
+            "form_id": "<redacted>",
+            "response_id": "@triggerOutputs()?['body/resourceData/responseId']"
+          },
+          "host": {
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+            "connection": "shared_microsoftforms",
+            "operationId": "GetFormResponseById"
+          }
+        },
+        "runAfter": {},
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "charactersArray",
+      "name": "Character array",
+      "type": "expression",
+      "value": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    },
+    {
+      "id": "specialCharactersArray",
+      "name": "Special character array",
+      "type": "expression",
+      "value": "-+!#$%*"
+    },
+    {
+      "id": "generatedPassword",
+      "name": "GeneratedPassword",
+      "type": "expression",
+      "value": "concat(substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('SpecialCharactersArray'), rand(0, 7), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1),substring(outputs('CharactersArray'), rand(0, 61), 1))"
+    },
+    {
+      "id": "initializeVariable",
+      "name": "initialise var",
+      "type": "action",
+      "definition": {
+        "type": "InitializeVariable",
+        "inputs": {
+          "variables": [
+            {
+              "name": "GeneratedPassword_Variable",
+              "type": "string"
+            }
+          ]
+        },
+        "runAfter": {
+          "GeneratedPassword": [
+            "Succeeded"
+          ]
+        },
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "setVariable",
+      "name": "Set var",
+      "type": "action",
+      "definition": {
+        "type": "SetVariable",
+        "inputs": {
+          "name": "GeneratedPassword_Variable",
+          "value": "@outputs('GeneratedPassword')"
+        },
+        "runAfter": {
+          "Initialize_variable": [
+            "Succeeded"
+          ]
+        },
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "createUser",
+      "name": "Create user",
+      "type": "action",
+      "definition": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "parameters": {
+            "body/accountEnabled": true,
+            "body/displayName": "@{outputs('Get_response_details')?['body/r95e26753ca95476fb3d0fbd1072b33a0']} @{outputs('Get_response_details')?['body/r697a2b006fa54fee9d44b29499fdb62a']}",
+            "body/mailNickname": "@{outputs('Get_response_details')?['body/r95e26753ca95476fb3d0fbd1072b33a0']}.@{outputs('Get_response_details')?['body/r697a2b006fa54fee9d44b29499fdb62a']}",
+            "body/passwordProfile/password": "@variables('GeneratedPassword_Variable')",
+            "body/userPrincipalName": "@{outputs('Get_response_details')?['body/r95e26753ca95476fb3d0fbd1072b33a0']}.@{outputs('Get_response_details')?['body/r697a2b006fa54fee9d44b29499fdb62a']}@l-w.tech",
+            "body/givenName": "@outputs('Get_response_details')?['body/r95e26753ca95476fb3d0fbd1072b33a0']",
+            "body/surname": "@outputs('Get_response_details')?['body/r697a2b006fa54fee9d44b29499fdb62a']"
+          },
+          "host": {
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_azuread",
+            "connection": "shared_azuread",
+            "operationId": "CreateUser"
+          }
+        },
+        "runAfter": {
+          "Set_variable": [
+            "Succeeded"
+          ]
+        },
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "sendEmail",
+      "name": "Send email",
+      "type": "action",
+      "definition": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "parameters": {
+            "emailMessage/To": "@outputs('Get_response_details')?['body/r7f9861ee58f346e29c6015cd55209e85']",
+            "emailMessage/Subject": "ANS & DIN - AI Stack in a Day | User Account",
+            "emailMessage/Body": "<p class=\"editor-paragraph\">Hi @{outputs('Get_response_details')?['body/r95e26753ca95476fb3d0fbd1072b33a0']},</p><br><p class=\"editor-paragraph\">Heres the account you've requested!</p><br><p class=\"editor-paragraph\">Username: @{outputs('Create_user')?['body/userPrincipalName']}<br>Password: @{variables('GeneratedPassword_Variable')}</p><br><p class=\"editor-paragraph\">Any issues please give me a shout!</p>",
+            "emailMessage/Importance": "Normal"
+          },
+          "host": {
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+            "connection": "shared_office365",
+            "operationId": "SendEmailV2"
+          }
+        },
+        "runAfter": {
+          "Create_user": [
+            "Succeeded"
+          ]
+        },
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    },
+    {
+      "id": "addUserToGroup",
+      "name": "Add user to group",
+      "type": "action",
+      "definition": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "parameters": {
+            "body/@odata.id": "@outputs('Create_user')?['body/id']",
+            "id": "<redacted>"
+          },
+          "host": {
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_azuread",
+            "connection": "shared_azuread",
+            "operationId": "AddUserToGroup"
+          }
+        },
+        "runAfter": {
+          "Send_an_email_(V2)": [
+            "Succeeded"
+          ]
+        },
+        "metadata": {
+            "operationMetadataId": "<redacted>"
+        }
+      }
+    }
+  ]
+}
