@@ -4,7 +4,7 @@
 This repository houses the data and resources for attendees of the ANS AI Stack In A Day event with the Disruptive Innovator Network (DIN).
 
 ## 🎟️ Account Sign-Up
-**Register for your event account:** _[Link will be provided to registered attendees]_
+**Register for your event account:** https://forms.office.com/e/J1CFs8xADd
 
 Your temporary account will be created automatically and credentials will be emailed to you. Accounts are valid for 24 hours and will be automatically removed after the event.
 
