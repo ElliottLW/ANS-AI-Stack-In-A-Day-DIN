@@ -14,7 +14,7 @@ The [`Data/`](Data/) folder contains datasets required for hands-on labs during 
 - **80,000 UFO Sightings dataset** 👽 - Yes, really! Use this out-of-this-world data during the Differential AI Lab to build and train your Azure AI Foundry agents. Analyze extraterrestrial encounters, spot patterns in alien activity, and create insights that are truly... otherworldly.
 - **Additional datasets** - Practice data analysis and integration scenarios
 
-🚀 Clone or download this repository before the event to have immediate access to all required resources. (No alien abduction required.)
+🚀 Clone or download this repository at the event to have immediate access to all required resources. (No alien abduction required.)
 
 ---
 
