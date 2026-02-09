@@ -5,22 +5,22 @@
 
 Your temporary account will be created automatically and credentials will be emailed to you. Accounts are valid for 24 hours and will be automatically removed after the event.
 
+
 ## 📥 Getting Started - Download This Repository
 
 Choose one of the following methods to get the code and data:
 
-### Option 1: Clone with Git (Recommended)
+### Option 1: Download as ZIP
+1. Click the green **<> Code** button at the top of the repository
+2. Select **Download ZIP**
+3. Extract the ZIP file to your desired location
+
+### Option 2: Clone with Git (Recommended)
 ```bash
 git clone https://github.com/ElliottLW/ANS-AI-Stack-In-A-Day-DIN.git
 cd ANS-AI-Stack-In-A-Day-DIN
 ```
 
-### Option 2: Download as ZIP
-1. Click the green **<> Code** button at the top of the repository
-2. Select **Download ZIP**
-3. Extract the ZIP file to your desired location
-
----
 
 ## 📁 Data Resources (🛸 The Truth Is Out There)
 The [`Data/`](Data/) folder contains datasets required for hands-on labs during the event, including:
@@ -33,7 +33,6 @@ The [`Data/`](Data/) folder contains datasets required for hands-on labs during 
 ## 📚 Lab Guides
 The [`Lab Guides/`](Lab%20Guides/) folder contains step-by-step documentation for all hands-on labs during the event. Follow these guides to work through each lab at your own pace.
 
----
 
 ## Event Overview
 Discover how AI integration and agent-building can transform your Housing Association. This exclusive event brings together the Disruptive Innovator Network (DIN), Microsoft experts, Public Sector leaders and technical specialists for a full day of learning, collaboration, and innovation.
