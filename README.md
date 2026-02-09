@@ -1,8 +1,5 @@
 # ANS AI Stack In A Day - DIN Event
 
-## About This Repository
-This repository houses the data and resources for attendees of the ANS AI Stack In A Day event with the Disruptive Innovator Network (DIN).
-
 ## 🎟️ Account Sign-Up
 **[Register for your temporary event account](https://forms.office.com/e/J1CFs8xADd)**
 
@@ -49,11 +46,11 @@ We'll cover Embedded AI, AI Extensibility, Advanced Analytics, and hands-on agen
 - ✅ Shape your organisation's AI strategy
 - ✅ Exclusive access to future AI opportunities and trials
 - ✅ All labs designed for real-world application—walk away with actionable skills
-- 🛸 Analyze 80,000 UFO sightings because your data projects should be fun too!
+- 🛸 Analyse 80,000 UFO sightings because your data projects should be fun too!
 
 ## Prerequisites
-To take part in the day, at least one person from your organisation attending will need access to the below:
+To take part in the day, at least one person from your organisation attending will need access to the following:
 
-- Ideally teams of 2–4. However, if it is just yourself that's ok
+- Ideally, teams of 2–4. However, if it is just yourself that's ok
 - Copilot licenses required for participation in the Embedded AI Lab
 - If you do not have a Copilot licence, but do have access to M365 Copilot chat please still come along—you will still benefit from the day
