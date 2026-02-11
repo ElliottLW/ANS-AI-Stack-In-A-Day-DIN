@@ -5,22 +5,30 @@
 
 Your temporary account will be created automatically and credentials will be emailed to you. Accounts are valid for 24 hours and will be automatically removed after the event.
 
-
-## 📥 Getting Started - Download This Repository
+## 📥 Getting Started - Content
 
 Choose one of the following methods to get the code and data:
 
-### Option 1: Download as ZIP
-1. Click the green **<> Code** button at the top of the repository
-2. Select **Download ZIP**
-3. Extract the ZIP file to your desired location
+### Option 1: Download from OneDrive
+Download the full content from the OneDrive folder.
+
+<a href="https://edgeitc-my.sharepoint.com/:f:/g/personal/elliott_l-w_tech/IgAu3WXE_PXOQ6PcxvBOyC1kAfV_qGrgd2m1rvjwGajWrX8?e=MKdwd2" style="display:inline-block;padding:10px 16px;background:#0f6cbd;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600;">Open OneDrive Folder</a>
 
 ### Option 2: Clone with Git (Recommended)
+Use Git to clone the repository and keep in sync with updates.
 ```bash
 git clone https://github.com/ElliottLW/ANS-AI-Stack-In-A-Day-DIN.git
 cd ANS-AI-Stack-In-A-Day-DIN
 ```
 
+### Option 3: Download as ZIP
+Download a snapshot ZIP from GitHub if you do not want to use Git.
+
+1. Click the green **<> Code** button at the top of the repository
+2. Select **Download ZIP**
+3. Extract the ZIP file to your desired location
+
+---
 
 ## 📁 Data Resources (🛸 The Truth Is Out There)
 The [`Data/`](Data/) folder contains datasets required for hands-on labs during the event, including:
